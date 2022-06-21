@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Logo extends StatelessWidget {
+class ImageLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Image.asset(
-        'img/sspds.png',
-        height: 100.0,
+        'images/imagelogin.png',
+        // width: MediaQuery.of(context).size.width,
       ),
     );
   }

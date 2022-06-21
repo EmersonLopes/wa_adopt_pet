@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:wa_adopt_pet/components/widget_default_buttom.dart';
 
 class ButtomLogin extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -19,7 +20,12 @@ class _ButtomLoginState extends State<ButtomLogin> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return WidgetDefaultButtom(
+      text: "Acessar",
+      press: () {
+        login();
+      },
+    );
   }
 
   Future<void> login() async {

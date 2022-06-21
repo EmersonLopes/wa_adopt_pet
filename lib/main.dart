@@ -28,11 +28,11 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: const ColorScheme.light(
-            primary: Color(0xff83C6C9),
-            secondary: Color(0xff1D9D9D),
-          ),
+        theme: ThemeData( primarySwatch: Colors.deepPurple
+          // colorScheme: const ColorScheme.light(
+          //   primary: Color(0xff57419D),
+          //   secondary: Color(0xff1D9D9D),
+          // ),
         ),
         initialRoute: AppRoutes.LOGIN,
         routes: {

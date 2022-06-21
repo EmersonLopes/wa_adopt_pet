@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'bem_vindo.dart';
 import 'buttom_login.dart';
-import 'logo.dart';
+import 'email_text_field.dart';
+import 'image_login.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -12,50 +13,44 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-
-
   @override
-  void initState() {
-
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      child: Form(
-        key: formKey,
-        child: Container(
-          alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.symmetric(horizontal: 30.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+        child: Form(
+      key: formKey,
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(height: 100.0),
-                    Logo(),
-                    SizedBox(height: screenHeight * 0.04),
-                    BemVindo(),
-                    SizedBox(height: screenHeight * 0.01),
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                          fontSize: (screenHeight > 550.0) ? 50 : 30,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ]),
-              SizedBox(height: screenHeight * 0.02),
+                children: [
+                  ImageLogin(),
+                  SizedBox(height: 16.0,),
+                  Text("Wa Adopt Pet",
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
+                ],
+              ),
+
+
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: screenHeight * 0.04),
+                  const Text("Informe seu e-mail",
+                      style: TextStyle(fontSize: 16)),
+                  const EmailTextField(),
+                ],
+              ),
               ButtomLogin(formKey: formKey),
-              SizedBox(height: screenHeight * 0.05),
-            ],
-          ),
-        ),
+            ]),
       ),
-    );
+    ));
   }
 }
