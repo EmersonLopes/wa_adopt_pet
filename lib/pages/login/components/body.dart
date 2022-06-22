@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'bem_vindo.dart';
 import 'buttom_login.dart';
 import 'email_text_field.dart';
 import 'image_login.dart';

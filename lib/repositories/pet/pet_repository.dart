@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:wa_adopt_pet/models/pet_model.dart';
 import 'package:wa_adopt_pet/repositories/pet/pet_repository_interface.dart';
 import 'package:wa_adopt_pet/services/client_http_interface.dart';
 import 'package:wa_adopt_pet/utils/constants.dart';
@@ -8,22 +10,26 @@ class PetRepository implements IPetRepository {
   PetRepository(this.clientHttp);
 
   @override
-  Future getCats() async {
+  Future<List<PetModel>> getCats() async {
     try {
       final response = await clientHttp.get(Constants.URL_CAT);
-
-      return response?.data;
+      List<PetModel> pets =
+          (response.data as List).map((i) => PetModel.fromJson(i)).toList();
+      return pets;
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future getDogs() async {
+  Future<List<PetModel>> getDogs() async {
     try {
+      debugPrint(Constants.URL_DOG);
       final response = await clientHttp.get(Constants.URL_DOG);
 
-      return response?.data;
+      List<PetModel> pets =
+          (response.data as List).map((i) => PetModel.fromJson(i)).toList();
+      return pets;
     } catch (e) {
       rethrow;
     }

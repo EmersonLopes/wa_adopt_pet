@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wa_adopt_pet/controllers/pet_controller.dart';
 
-import 'pages/login_page/login_page.dart';
+import 'pages/login/login_page.dart';
+import 'pages/pets/pets_page.dart';
 import 'repositories/pet/pet_repository.dart';
 import 'services/client_http_service.dart';
 import 'utils/app_routes.dart';
@@ -28,15 +29,11 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData( primarySwatch: Colors.deepPurple
-          // colorScheme: const ColorScheme.light(
-          //   primary: Color(0xff57419D),
-          //   secondary: Color(0xff1D9D9D),
-          // ),
-        ),
+        theme: ThemeData(primarySwatch: Colors.deepPurple),
         initialRoute: AppRoutes.LOGIN,
         routes: {
           AppRoutes.LOGIN: (ctx) => LoginPage(),
+          AppRoutes.PETS: (ctx) => PetsPage(),
         },
       ),
     );

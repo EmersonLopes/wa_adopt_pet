@@ -5,7 +5,7 @@ class ImageLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Image.asset(
-        'images/imagelogin.png',
+        'assets/images/imagelogin.png',
         // width: MediaQuery.of(context).size.width,
       ),
     );

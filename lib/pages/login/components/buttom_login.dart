@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:wa_adopt_pet/components/widget_default_buttom.dart';
+import 'package:wa_adopt_pet/utils/app_routes.dart';
 
 class ButtomLogin extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -31,7 +32,9 @@ class _ButtomLoginState extends State<ButtomLogin> {
   Future<void> login() async {
     if (widget.formKey.currentState!.validate()) {
       widget.formKey.currentState!.save();
-      try {} catch (e) {}
+      try {
+        Navigator.pushNamed(context, AppRoutes.PETS);
+      } catch (e) {}
     }
   }
 }
