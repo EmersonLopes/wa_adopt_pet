@@ -5,6 +5,8 @@ import 'package:wa_adopt_pet/controllers/enum_state_controller.dart';
 import 'package:wa_adopt_pet/controllers/pet_controller.dart';
 import 'package:wa_adopt_pet/models/pet_model.dart';
 
+import 'card_pet.dart';
+
 class ListViewPets extends StatefulWidget {
   const ListViewPets({Key? key}) : super(key: key);
 
@@ -46,64 +48,21 @@ class _ListViewPetsState extends State<ListViewPets> {
                   alignment: Alignment.center,
                   child: const Text('Nenhuma informação encontrada'));
             }
-            return ListView.builder(
+            return GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: petController.listPets.length,
               itemBuilder: (BuildContext context, int index) {
-                return getItem(petController.listPets[index]);
+                return CardPet(petModel: petController.listPets[index]);
               },
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20),
             );
         }
       },
-    );
-  }
-
-  getItem(PetModel p) {
-    String name = "";
-    if (p.breeds != null) {
-      if (p.breeds!.length > 0) {
-        name = p.breeds![0].name!;
-      }
-    }
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        padding: const EdgeInsets.only(left: 14.0),
-                        child: Text(
-                          name,
-                          style: const TextStyle(fontSize: 18.0),
-                        )),
-                    const SizedBox(height: 2.0),
-                  ],
-                ),
-              ],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              height: MediaQuery.of(context).size.height * 0.35,
-//        width: width,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
-                  p.url ?? "",
-                  fit: BoxFit.cover,
-//                      height: MediaQuery.of(context).size.height * 0.8,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -13,7 +13,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Container(
-      height: MediaQuery.of(context).size.height,
+      
       padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
