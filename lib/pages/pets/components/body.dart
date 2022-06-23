@@ -15,7 +15,7 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     _scrollController.addListener(() {
-      debugPrint('addListener');
+      _scrollListener();
     });
 
     petController = context.read<PetController>();

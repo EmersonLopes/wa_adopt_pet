@@ -5,6 +5,7 @@ import 'package:wa_adopt_pet/components/widget_default_buttom.dart';
 import 'package:wa_adopt_pet/controllers/enum_state_controller.dart';
 import 'package:wa_adopt_pet/controllers/pet_controller.dart';
 import 'package:wa_adopt_pet/models/pet_model.dart';
+import 'package:wa_adopt_pet/pages/pets/components/error_loading.dart';
 
 import 'card_pet.dart';
 
@@ -39,13 +40,17 @@ class _ListViewPetsState extends State<ListViewPets> {
                 child: const CircularProgressIndicator(),
               );
             } else {
-              return gridViewPets();
+              return Container(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  alignment: Alignment.center,
+                  child: const Text('Carregando...'));
             }
 
           case StateController.error:
-            return Center(
-              child: Text('Houve um problema'),
-            );
+            return ErrorLoading(onButtonClick: () async {
+              petController.getPets();
+            });
           case StateController.success:
           default:
             if (petController.listPets.isEmpty) {
@@ -76,6 +81,4 @@ class _ListViewPetsState extends State<ListViewPets> {
           mainAxisSpacing: 2),
     );
   }
-
-
 }
