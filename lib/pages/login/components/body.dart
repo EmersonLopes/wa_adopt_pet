@@ -23,7 +23,7 @@ class _BodyState extends State<Body> {
         child: Form(
       key: formKey,
       child: Container(
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height * 0.9,
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

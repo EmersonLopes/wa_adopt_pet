@@ -1,14 +1,25 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wa_adopt_pet/controllers/pet_controller.dart';
 
 import 'pages/login/login_page.dart';
+import 'pages/pet/pet_page.dart';
 import 'pages/pets/pets_page.dart';
 import 'repositories/pet/pet_repository.dart';
 import 'services/client_http_service.dart';
 import 'utils/app_routes.dart';
 
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -34,6 +45,7 @@ class MyApp extends StatelessWidget {
         routes: {
           AppRoutes.LOGIN: (ctx) => LoginPage(),
           AppRoutes.PETS: (ctx) => PetsPage(),
+          AppRoutes.PET: (ctx) => PetPage(),
         },
       ),
     );

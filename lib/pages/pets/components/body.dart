@@ -9,15 +9,47 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  ScrollController _scrollController = ScrollController();
+  late PetController petController;
+
+  @override
+  void initState() {
+    _scrollController.addListener(() {
+      debugPrint('addListener');
+    });
+
+    petController = context.read<PetController>();
+    petController.clearPets();
+    petController.getPets();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+        controller: _scrollController,
         child: Container(
-      
-      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[ListViewPets()]),
-    ));
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              ListViewPets(),
+            ],
+          ),
+        ));
+  }
+
+  _scrollListener() {
+    print("listener");
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      print("End list");
+      petController.getPets();
+    }
   }
 }

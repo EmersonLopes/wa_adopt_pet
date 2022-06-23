@@ -1,13 +1,22 @@
+import 'breeds_model.dart';
+
 class PetModel {
   List<Breeds>? breeds;
   String? id;
   String? url;
   int? width;
   int? height;
+  bool? isDog;
 
-  PetModel({this.breeds, this.id, this.url, this.width, this.height});
+  PetModel(
+      {this.breeds,
+      this.id,
+      this.url,
+      this.width,
+      this.height,
+      this.isDog = true,});
 
-  PetModel.fromJson(Map<String, dynamic> json) {
+  PetModel.fromJson(Map<String, dynamic> json, this.isDog) {
     if (json['breeds'] != null) {
       breeds = <Breeds>[];
       json['breeds'].forEach((v) {
@@ -31,78 +40,110 @@ class PetModel {
     data['height'] = this.height;
     return data;
   }
-}
 
-class Breeds {
-  Weight? weight;
-  Weight? height;
-  String? id;
-  String? name;
-  String? bredFor;
-  String? breedGroup;
-  String? lifeSpan;
-  String? temperament;
-  String? referenceImageId;
+  getName() {
+    try {
+      String name = "Meu nome";
+      if (isDog ?? true) {
+        name = "Dog";
+      } else {
+        name = "Cat";
+      }
 
-  Breeds(
-      {this.weight,
-        this.height,
-        this.id,
-        this.name,
-        this.bredFor,
-        this.breedGroup,
-        this.lifeSpan,
-        this.temperament,
-        this.referenceImageId});
+      if (breeds != null) {
+        if (breeds!.isNotEmpty) {
+          name = breeds![0].name!;
+        }
 
-  Breeds.fromJson(Map<String, dynamic> json) {
-    weight =
-    json['weight'] != null ? new Weight.fromJson(json['weight']) : null;
-    height =
-    json['height'] != null ? new Weight.fromJson(json['height']) : null;
-    id = json['id'].toString();
-    name = json['name'];
-    bredFor = json['bred_for'];
-    breedGroup = json['breed_group'];
-    lifeSpan = json['life_span'];
-    temperament = json['temperament'];
-    referenceImageId = json['reference_image_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.weight != null) {
-      data['weight'] = this.weight!.toJson();
+        return name;
+      } else {
+        return name;
+      }
+    } catch (e) {
+      return "Sem nome";
     }
-    if (this.height != null) {
-      data['height'] = this.height!.toJson();
+  }
+
+  String? getDescription() {
+    try {
+      if (breeds != null) {
+        if (breeds!.isNotEmpty) {
+          return breeds?[0].description;
+        }
+        return null;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
     }
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['bred_for'] = this.bredFor;
-    data['breed_group'] = this.breedGroup;
-    data['life_span'] = this.lifeSpan;
-    data['temperament'] = this.temperament;
-    data['reference_image_id'] = this.referenceImageId;
-    return data;
+  }
+
+  String getGroupOrOrigin() {
+    try {
+      if (breeds != null) {
+        if (breeds!.isNotEmpty) {
+          if (isDog ?? true) {
+            return breeds?[0].breedGroup ?? "--";
+          } else {
+            return breeds?[0].origin ?? "--";
+          }
+        }
+        return "--";
+      } else {
+        return "--";
+      }
+    } catch (e) {
+      return "--";
+    }
+  }
+
+  String? getBredFor() {
+    try {
+      if (breeds != null) {
+        if (breeds!.isNotEmpty) {
+          return breeds?[0].bredFor;
+        }
+        return null;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
+  String? getTemperament() {
+    try {
+      if (breeds != null) {
+        if (breeds!.isNotEmpty) {
+          return breeds?[0].temperament;
+        }
+        return null;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
+  String? getLifeSpan() {
+    try {
+      if (breeds != null) {
+        if (breeds!.isNotEmpty) {
+          return breeds?[0].lifeSpan;
+        }
+        return null;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
   }
 }
 
-class Weight {
-  String? imperial;
-  String? metric;
 
-  Weight({this.imperial, this.metric});
 
-  Weight.fromJson(Map<String, dynamic> json) {
-    imperial = json['imperial'];
-    metric = json['metric'];
-  }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imperial'] = this.imperial;
-    data['metric'] = this.metric;
-    return data;
-  }
-}

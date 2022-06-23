@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+import 'package:wa_adopt_pet/components/widget_default_buttom.dart';
 import 'package:wa_adopt_pet/controllers/enum_state_controller.dart';
 import 'package:wa_adopt_pet/controllers/pet_controller.dart';
 import 'package:wa_adopt_pet/models/pet_model.dart';
@@ -30,12 +31,17 @@ class _ListViewPetsState extends State<ListViewPets> {
       builder: (BuildContext context) {
         switch (petController.statePet) {
           case StateController.loading:
-            return Container(
-              alignment: Alignment.center,
-              height: MediaQuery.of(context).size.height * 0.35,
-              width: MediaQuery.of(context).size.width,
-              child: const CircularProgressIndicator(),
-            );
+            if (petController.listPets.isEmpty) {
+              return Container(
+                alignment: Alignment.center,
+                height: MediaQuery.of(context).size.height * 0.35,
+                width: MediaQuery.of(context).size.width,
+                child: const CircularProgressIndicator(),
+              );
+            } else {
+              return gridViewPets();
+            }
+
           case StateController.error:
             return Center(
               child: Text('Houve um problema'),
@@ -48,21 +54,28 @@ class _ListViewPetsState extends State<ListViewPets> {
                   alignment: Alignment.center,
                   child: const Text('Nenhuma informação encontrada'));
             }
-            return GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: petController.listPets.length,
-              itemBuilder: (BuildContext context, int index) {
-                return CardPet(petModel: petController.listPets[index]);
-              },
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20),
-            );
+            return gridViewPets();
         }
       },
     );
   }
+
+  gridViewPets() {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: petController.listPets.length,
+      itemBuilder: (BuildContext context, int index) {
+        return CardPet(petModel: petController.listPets[index]);
+      },
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          mainAxisExtent: 180,
+          childAspectRatio: 5 / 4,
+          crossAxisSpacing: 2,
+          mainAxisSpacing: 2),
+    );
+  }
+
+
 }

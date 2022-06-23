@@ -13,7 +13,7 @@ class _PetsPageState extends State<PetsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text("Pets")),
       body: Body(),
     );
   }

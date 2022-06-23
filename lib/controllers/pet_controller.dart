@@ -18,6 +18,7 @@ abstract class PetControllerBase with Store {
   StateController statePet = StateController.idle;
 
   List<PetModel> listPets = [];
+  PetModel? selectedPet;
 
   getPets() async {
     try {
@@ -49,5 +50,9 @@ abstract class PetControllerBase with Store {
     } catch (e) {
       statePet = StateController.error;
     }
+  }
+
+  selectPet(PetModel petModel){
+    selectedPet = petModel;
   }
 }

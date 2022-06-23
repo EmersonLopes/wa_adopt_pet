@@ -33,7 +33,7 @@ class _ButtomLoginState extends State<ButtomLogin> {
     if (widget.formKey.currentState!.validate()) {
       widget.formKey.currentState!.save();
       try {
-        Navigator.pushNamed(context, AppRoutes.PETS);
+        Navigator.pushReplacementNamed(context, AppRoutes.PETS);
       } catch (e) {}
     }
   }
