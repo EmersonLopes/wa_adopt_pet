@@ -6,7 +6,7 @@ class PetLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height*0.8,
+      height: MediaQuery.of(context).size.height * 0.8,
       alignment: Alignment.center,
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -23,13 +23,6 @@ class PetLoading extends StatelessWidget {
           ),
         ],
       ),
-    );
-
-    Container(
-      alignment: Alignment.center,
-      height: MediaQuery.of(context).size.height * 0.35,
-      width: MediaQuery.of(context).size.width,
-      child: const CircularProgressIndicator(),
     );
   }
 }

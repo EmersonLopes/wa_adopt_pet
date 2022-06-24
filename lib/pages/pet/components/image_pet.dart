@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wa_adopt_pet/models/pet_model.dart';
 
@@ -13,15 +14,18 @@ class ImagePet extends StatelessWidget {
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       shape: const RoundedRectangleBorder(
-        borderRadius: const BorderRadius.only(
-            bottomRight: const Radius.circular(20), bottomLeft: const Radius.circular(20)),
+        borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20)),
       ),
       elevation: 5,
-      child: FadeInImage.assetNetwork(
-        fit: BoxFit.cover,
+      child: CachedNetworkImage(
         width: MediaQuery.of(context).size.width,
-        image: petModel.url ?? "",
-        placeholder: "assets/images/pet.png",
+        fit: BoxFit.cover,
+        imageUrl: petModel.url ?? "",
+        placeholder: (context, url) => const Image(
+            image: AssetImage("assets/images/pet.png"), fit: BoxFit.fitWidth),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );
   }

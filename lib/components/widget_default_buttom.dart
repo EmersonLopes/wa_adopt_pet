@@ -15,6 +15,7 @@ class WidgetDefaultButtom extends StatelessWidget {
       child: MaterialButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         color: Theme.of(context).colorScheme.secondary,
+        disabledColor: Theme.of(context).primaryColorLight,
         onPressed: isLoading ? null : press,
         child: isLoading
             ? Center(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -18,6 +19,7 @@ class CardPet extends StatefulWidget {
 
 class _CardPetState extends State<CardPet> {
   late PetController petController;
+  double width = 0;
 
   @override
   void initState() {
@@ -26,6 +28,7 @@ class _CardPetState extends State<CardPet> {
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
         petController.selectedPet = widget.petModel;
@@ -45,11 +48,14 @@ class _CardPetState extends State<CardPet> {
               Container(
                 height: 120,
                 // padding: const EdgeInsets.only(bottom: 50),
-                child: FadeInImage.assetNetwork(
-                  fit: BoxFit.cover,
+                child: CachedNetworkImage(
                   width: MediaQuery.of(context).size.width,
-                  image: widget.petModel.url ?? "",
-                  placeholder: "assets/images/pet.png",
+                  fit: BoxFit.cover,
+                  imageUrl: widget.petModel.url ?? "",
+                  placeholder: (context, url) => const Image(
+                      image: AssetImage("assets/images/pet.png"),
+                      fit: BoxFit.fitWidth),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
               Positioned(
@@ -63,7 +69,7 @@ class _CardPetState extends State<CardPet> {
                       width: 140,
                       child: Text(
                         widget.petModel.getName(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 16.0),
                         overflow: TextOverflow.clip,
                         maxLines: 1,
@@ -71,7 +77,7 @@ class _CardPetState extends State<CardPet> {
                     ),
                     Text(
                       widget.petModel.getGroupOrOrigin(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.w400, fontSize: 12.0),
                     ),
                   ],
@@ -93,6 +99,4 @@ class _CardPetState extends State<CardPet> {
       ),
     );
   }
-
-
 }

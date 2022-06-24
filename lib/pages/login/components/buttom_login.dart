@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-
 import 'package:provider/provider.dart';
 import 'package:wa_adopt_pet/components/widget_default_buttom.dart';
 import 'package:wa_adopt_pet/controllers/enum_state_controller.dart';
 import 'package:wa_adopt_pet/controllers/login_controller.dart';
-import 'package:wa_adopt_pet/services/local_storage_intergace.dart';
-import 'package:wa_adopt_pet/services/shared_local_storage_service.dart';
 import 'package:wa_adopt_pet/utils/app_routes.dart';
-import 'package:wa_adopt_pet/utils/constants.dart';
 
 class ButtomLogin extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -51,7 +47,7 @@ class _ButtomLoginState extends State<ButtomLogin> {
         }
       } on Exception catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Usuário não encontrado."),
+          content: Text("Usuário não encontrado.")
         ));
       }
     }
