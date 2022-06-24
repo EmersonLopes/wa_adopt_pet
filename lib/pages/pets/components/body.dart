@@ -45,10 +45,8 @@ class _BodyState extends State<Body> {
   }
 
   _scrollListener() {
-    print("listener");
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
-      print("End list");
       petController.getPets();
     }
   }

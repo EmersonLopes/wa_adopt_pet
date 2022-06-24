@@ -8,6 +8,7 @@ import 'package:wa_adopt_pet/models/pet_model.dart';
 import 'package:wa_adopt_pet/pages/pets/components/error_loading.dart';
 
 import 'card_pet.dart';
+import 'pet_loading.dart';
 
 class ListViewPets extends StatefulWidget {
   const ListViewPets({Key? key}) : super(key: key);
@@ -32,21 +33,7 @@ class _ListViewPetsState extends State<ListViewPets> {
       builder: (BuildContext context) {
         switch (petController.statePet) {
           case StateController.loading:
-            if (petController.listPets.isEmpty) {
-              return Container(
-                alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height * 0.35,
-                width: MediaQuery.of(context).size.width,
-                child: const CircularProgressIndicator(),
-              );
-            } else {
-              return Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  alignment: Alignment.center,
-                  child: const Text('Carregando...'));
-            }
-
+            return const PetLoading();
           case StateController.error:
             return ErrorLoading(onButtonClick: () async {
               petController.getPets();
