@@ -1,16 +1,32 @@
-# wa_adopt_pet
+# Wa Adopt Pet
 
-A new Flutter project.
+Um projeto Flutter para adoção de pets
 
-## Getting Started
+## Como executar o aplicativo
 
-This project is a starting point for a Flutter application.
+   ```
+   - Clone esse repositório:
+   $ git clone https://github.com/EmersonLopes/wa_adopt_pet.git
 
-A few resources to get you started if this is your first Flutter project:
+   - Entre no diretório:
+   $ cd wa_adopt_pet
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+   - Instale as dependências:
+   $ flutter pub get
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   - Inicie o app: 
+   $ flutter run
+   
+   - Gerar apk para instalação: 
+   $ flutter build apk
+   ```   
+## E-mails para login
+  
+  Utilize esses e-mails para realizar o login:
+   - joao@gmail.com
+   - maria@gmail.com
+   - jose@gmail.com
+
+## Imagens
+
+<img src="screenshots/01.jpg" height="480px" > <img src="screenshots/02.jpg" height="480px" > <img src="screenshots/03.jpg" height="480px" > <img src="screenshots/04.jpg" height="480px" >
